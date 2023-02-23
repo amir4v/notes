@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <style>
+        body{
+            padding: 1%;
+            background-color: rgb(240, 240, 240);
+        }
+
+        *{
+            font-family: "Vazir Code";
+            font-size: 1.1em;
+            direction: {{ request.COOKIES.dir }};
+        }
+
+        .folder{
+            border: 3px solid rgb(222, 209, 238);
+            background-color: rgb(32, 158, 255);;
+            color: rgb(249, 249, 249);
+            border-radius: 10px;
+            padding: 0.5%;
+            margin: 0.5%;
+            display: inline-block;
+        }
+
+        .note{
+            border: 1px solid rgb(32, 158, 255);
+            background-color: white;
+            color: rgb(50, 50, 50);
+            border-radius: 5px;
+            padding: 1%;
+            display: block;
+        }
+
+        textarea{
+            width: 99%;
+            padding: 0.5%;
+            line-height: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <a href="/">HOME</a> | 
+        <a href=
+        "/add-note/{% if folder %}{{ folder.id }}/{% endif %}{% if parent %}{{ parent.id }}/{% endif %}"
+        >Add-Note</a> | 
+
+        <a href=
+        "/add-folder/{% if folder %}{{ folder.id }}/{% endif %}{% if parent %}{{ parent.id }}/{% endif %}"
+        >Add-Folder</a>
+    </center>
+    <br>
+    <hr>
+    <br>
+
+    {% block content %}{% endblock %}
+
+    Direction:
+    <br>
+    rtl:<input type="radio" onchange="dir_changed(this)" name="dir" value="rtl">
+    <br>
+    ltr:<input type="radio" onchange="dir_changed(this)" name="dir" value="ltr">
+
+    <script>
+        function dir_changed(e){
+            const xhttp = new XMLHttpRequest();
+            // xhttp.onload = function() {
+            //     this.responseText;
+            //     }
+            xhttp.open("GET", "/change-direction/" + e.value, true);
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>

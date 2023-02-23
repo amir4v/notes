@@ -1,0 +1,15 @@
+{% extends "note/base.html" %}
+
+{% block content %}
+<center>
+    <form action="/add-folder/" method="post">
+        {% csrf_token %}
+        <label>Add-Folder:</label>
+        <input name="name" type="text" style="width: 33%;">
+        <input type="submit" value="save">
+    </form>
+</center>
+<br><hr><br>
+
+{% include 'note/partials/folders-and-notes.html' %}
+{% endblock %}

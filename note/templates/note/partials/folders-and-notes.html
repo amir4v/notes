@@ -1,0 +1,27 @@
+{% for folder in folders %}
+    <a href="/folder/{{ folder.id }}/" style="text-decoration: none;">
+        <p class="folder">{{ folder.name }}</p>
+    </a>
+{% endfor %}
+
+<br><br><hr><br><br>
+
+{% for note in notes %}
+    {% if note.title or note.content %}
+    <a href="/note/{{ note.id }}/" class="note" style="text-decoration: none;">
+        {% if note.title %}
+            "{{ note.title }}"
+        {% endif %}
+
+        {% if note.title and note.content %}
+        <br>
+        <br>
+        {% endif %}
+
+        {% if note.content %}
+        {{ note.content|linebreaksbr|safe }}
+        {% endif %}
+    </a>
+    <br><br><br>
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,13 @@
+{% extends "note/base.html" %}
+
+{% block content %}
+<center>
+    <h1>"{{ folder.name }}"
+        <a href="/go-to-parent-folder/{{ folder.id }}/" style="text-decoration: none; color: gray;">
+            /parent-folder
+        </a>
+    </h1>
+</center>
+
+{% include 'note/partials/folders-and-notes.html' %}
+{% endblock %}

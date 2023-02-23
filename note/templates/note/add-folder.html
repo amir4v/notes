@@ -1,0 +1,31 @@
+{% extends "note/base.html" %}
+
+{% block content %}
+<form action="/add-folder/" method="post">
+    {% csrf_token %}
+    Parent:
+    <select name="parent">
+        {% if folder %}
+            <option value="{{ folder.id }}">{{ folder.name }}</option>
+        {% endif %}
+        {% if parent %}
+            <option value="{{ parent.id }}">{{ parent.name }}</option>
+        {% endif %}
+        {% if not folder and not parent %}
+        <option value=""></option>
+        {% endif %}
+
+        {% for folder in folders %}
+            <option value="None"></option>
+            <option value="{{ folder.id }}">{{ folder.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    <label>Folder-Name:</label>
+    <input name="name" type="text">
+    <input type="submit" value="save">
+</form>
+
+<br>
+{% endblock %}

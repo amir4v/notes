@@ -1,0 +1,28 @@
+{% extends "note/base.html" %}
+
+{% block content %}
+    <form action="/add-note/" method="post">
+        {% csrf_token %}
+        Title: <input type="text" name="title">
+        <br>
+        <br>
+        Folder:
+        <select name="folder">
+            {% if folder %}
+                <option value="{{ folder.id }}">{{ folder.name }}</option>
+            {% endif %}
+
+            {% for folder in folders %}
+                <option value="None"></option>
+                <option value="{{ folder.id }}">{{ folder.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <textarea name="content" rows="15"></textarea>
+        <br>
+        <input type="submit" value="save">
+    </form>
+
+    <br>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "note/base.html" %}
+
+{% block content %}
+<ul style="line-height: 2em; margin: 1%;">
+{% for folder in folders %}
+<li> 
+    <a href="/folder/{{ folder.id }}/" style="color: black; text-decoration: none;">{{ folder.name }}</a>
+    {{ folder.children_in_li|safe }}
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

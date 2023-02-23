@@ -1,0 +1,27 @@
+{% extends "note/base.html" %}
+
+{% block content %}
+    <center>
+        <h1>"{{ note.title }}"</h1>
+    </center>
+    <br>
+    <hr>
+    <br>
+    
+    Folder: <a href="{% if note.folder %}/folder/{{ note.folder.id }}/{% else %}/{% endif %}" style="color: black; font-weight: bold;">
+        {% if note.folder %}
+            {{ note.folder.name }}
+        {% else %}
+            HOME
+        {% endif %}
+    </a>
+    <br><br>
+    
+    {% if note.content %}
+    <p class="note">
+        {{ note.content }}
+    </p>
+    {% endif %}
+
+    <br>
+{% endblock %}
